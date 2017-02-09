@@ -8,7 +8,7 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('selected-node');
-  this.route('slow-nodes');
+  this.route('nodes');
 });
 
 export default Router;

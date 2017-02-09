@@ -30,6 +30,13 @@ export default Ember.Service.extend({
     }
   },
 
+  clearGraph() {
+    sessionStorage.removeItem(STORAGE_KEY);
+
+    this.set('data', null);
+    this.set('graph', null);
+  },
+
   setGraph(data) {
     let graph = heimdallGraph.loadFromJSON(data);
 
@@ -45,6 +52,6 @@ export default Ember.Service.extend({
     sessionStorage.setItem(SELECTED_NODE_STORAGE_KEY, node.id);
 
     this.set('selectedNode', node);
-    getOwner(this).lookup('router:main').transitionTo('selected-node');
+    getOwner(this).lookup('router:main').transitionTo('index');
   }
 });

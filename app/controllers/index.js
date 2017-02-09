@@ -5,5 +5,17 @@ const {
 } = Ember;
 
 export default Ember.Controller.extend({
-  graph: inject.service()
+  graph: inject.service(),
+
+  actions: {
+    viewFullGraph() {
+      this.get('graph').deselectNode();
+    },
+
+    viewSelectedNode() {
+      if (!this.get('graph.selectedNode')) {
+        this.transitionToRoute('nodes');
+      }
+    }
+  }
 });

@@ -1,18 +1,27 @@
-<section class="hero is-light">
+<section class="global-nav hero is-light">
   <nav class="nav">
     <div class="nav-left">
-      {{link-to 'Home' 'index' class="nav-item is-tab" activeClass="is-active"}}
-      {{link-to 'Slow Nodes' 'slow-nodes' class="nav-item is-tab" activeClass="is-active"}}
-      <a class="nav-item" {{action (action (mut showUploadModal) true)}}>
-        Select Data
-      </a>
+      {{link-to 'Graph' 'index' class="nav-item is-tab" activeClass="is-active"}}
+      {{link-to 'Nodes' 'nodes' class="nav-item is-tab" activeClass="is-active"}}
     </div>
+
     <div class="nav-center">
       <p class="nav-item title">
         Heimdall Visualizer
       </p>
     </div>
+
     <div class="nav-right">
+      {{#if (not graph.data)}}
+        <a href="#" class="nav-item" {{action (action (mut showUploadModal) true)}}>
+          Upload Data
+        </a>
+      {{else}}
+        <a href="#" class="nav-item" {{action 'clearData'}}>
+          Clear Data
+        </a>
+      {{/if}}
+
       <a class="nav-item" href="https://github.com/rwjblue/heimdalljs-visualizer">
         <span class="icon">
           <i class="fa fa-github"></i>
@@ -51,4 +60,21 @@
   <button class="modal-close" {{action (action (mut showUploadModal) false)}}></button>
 </div>
 
-{{outlet}}
+{{#if graph.data}}
+  {{outlet}}
+{{else}}
+  <section class="hero is-fullheight is-danger">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <a href="#" {{action (action (mut showUploadModal) true)}}>
+          <h1 class="title">
+            <i class="fa fa-exclamation-triangle"></i>
+          </h1>
+          <h2 class="subtitle">
+            Please upload data.
+          </h2>
+        </a>
+      </div>
+    </div>
+  </section>
+{{/if}}

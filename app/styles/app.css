@@ -2,6 +2,19 @@
   font: 10px sans-serif;
 }
 
+.global-nav {
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+}
+
+.selected-node-controls {
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  bottom: 0;
+}
+
 .link {
   fill: none;
   stroke: #555;
@@ -16,10 +29,16 @@
   padding-bottom: 100%;
   vertical-align: top;
   overflow: hidden;
+  cursor: move;
 }
+
 .svg-content {
   display: inline-block;
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.table-row:hover {
+  cursor: pointer;
 }

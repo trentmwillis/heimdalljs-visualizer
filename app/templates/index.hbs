@@ -1,4 +1,20 @@
-{{! basic-tree graphData=graphData}}
+<div class="selected-node-controls hero-footer">
+  <nav class="tabs is-boxed is-fullwidth">
+    <div class="container">
+      <ul>
+        <li class="{{if (not viewingNode) 'is-active'}}">
+          <a {{action "viewFullGraph"}}>Full Graph</a>
+        </li>
+        <li class="{{if viewingNode 'is-active'}}">
+          <a {{action "viewSelectedNode"}}>Selected Node: {{if graph.selectedNode graph.selectedNode.label.name 'None'}}</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
 
-{{! useful for testing... }}
-{{basic-tree graphData=graph.graph}}
+{{#if viewingNode}}
+  {{basic-tree graphData=graph.selectedNode nodeFilter=null}}
+{{else}}
+  {{basic-tree graphData=graph.graph}}
+{{/if}}
